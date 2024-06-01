@@ -9,7 +9,9 @@ import com.dev7ex.multiworld.api.bukkit.event.user.WorldUserTeleportWorldEvent;
 import com.dev7ex.multiworld.api.bukkit.world.BukkitWorldHolder;
 import com.dev7ex.multiworld.api.user.WorldUser;
 import com.dev7ex.multiworld.world.DefaultWorldProvider;
+import com.earth2me.essentials.User;
 import com.google.common.collect.Lists;
+import net.ess3.api.IEssentials;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
@@ -92,7 +94,17 @@ public class TeleportCommand extends BukkitCommand implements BukkitTabCompleter
             if (event.isCancelled()) {
                 return;
             }
+
+            IEssentials ess = MultiWorldPlugin.getInstance().getEssentialsProvider();
+            if(ess != null){
+                User eUser = ess.getUser(player);
+                if(eUser != null){
+                    eUser.setLastLocation(player.getLocation());
+                }
+            }
+
             player.teleport(nextWorldHolder.getWorld().getSpawnLocation());
+
             return;
         }
 

@@ -19,7 +19,7 @@ public class EntitySpawnListener extends MultiWorldListener {
         super(multiWorldApi);
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
+    @EventHandler(priority = EventPriority.LOWEST)
     public void handleEntitySpawn(final EntitySpawnEvent event) {
         if (event.getLocation().getWorld() == null) {
             return;

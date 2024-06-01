@@ -23,6 +23,8 @@ import com.dev7ex.multiworld.world.DefaultWorldManager;
 import com.dev7ex.multiworld.world.DefaultWorldProvider;
 import lombok.AccessLevel;
 import lombok.Getter;
+import net.ess3.api.IEssentials;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -122,4 +124,8 @@ public final class MultiWorldPlugin extends BukkitPlugin implements MultiWorldBu
         return JavaPlugin.getPlugin(MultiWorldPlugin.class);
     }
 
+    public IEssentials getEssentialsProvider(){
+        IEssentials provider = (IEssentials) Bukkit.getPluginManager().getPlugin("Essentials");
+        return provider;
+    }
 }
